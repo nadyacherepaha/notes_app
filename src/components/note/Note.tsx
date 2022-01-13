@@ -3,7 +3,13 @@ import { AiFillDelete } from 'react-icons/ai';
 import "./note.scss";
 import { INote } from '../../types/note';
 
-const Note: FC<INote> = ({ id, text, date }) => {
+export interface IOnDeleteNoteHandler {
+	onDeleteNoteHandler: (id: number) => void;
+}
+
+interface INoteComponent extends INote, IOnDeleteNoteHandler {}
+
+const Note: FC<INoteComponent> = ({ id, text, date, onDeleteNoteHandler }) => {
   const [notes, setNotes] = useState<string>(text);
 
 	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | null>, id: number) => {
@@ -20,6 +26,7 @@ const Note: FC<INote> = ({ id, text, date }) => {
 		<div className='note__footer'>
 				<small>{date}</small>
 					<AiFillDelete
+						onClick={() => onDeleteNoteHandler(id)}
 						size='1.3em'
 					/>
 				</div>

@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import Note from '../note/Note';
+import Note, { IOnDeleteNoteHandler } from '../note/Note';
 import './notesList.scss';
 import { INote } from '../../types/note'
 
-interface INotesList {
+interface INotesList extends IOnDeleteNoteHandler {
 	notes: INote[];
 }
 
-const NotesList: FC<INotesList> = ({ notes }) => {
+const NotesList: FC<INotesList> = ({ notes, onDeleteNoteHandler }) => {
 
 	return (
 		<div className='notes-list'>
@@ -15,6 +15,7 @@ const NotesList: FC<INotesList> = ({ notes }) => {
 				<Note
 					key={note.id}
 					{...note}
+					onDeleteNoteHandler={onDeleteNoteHandler}
 				/>
 			))}
 

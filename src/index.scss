@@ -19,3 +19,9 @@ textarea:focus-visible {
 	outline-offset: 0;
 	outline: 0;
 }
+
+svg:hover,
+svg:active,
+svg:focus {
+	cursor: pointer;
+}
