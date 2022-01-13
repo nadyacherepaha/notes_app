@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
-import "./note.scss"
+import "./note.scss";
+import { INote } from '../../types/note';
 
-const Note = () => {
-  const [notes, setNotes] = useState<string>("");
+const Note: FC<INote> = ({ id, text, date }) => {
+  const [notes, setNotes] = useState<string>(text);
 
-	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | null>) => {
+	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | null>, id: number) => {
 		setNotes(e.target.value);
-	  };
+	};
 
 	return (
 		<div className='note'>
 			<textarea className='note__text'
 				value={notes}
-				onChange={(e) => handleChange(e)}
+				onChange={(e) => handleChange(e, id)}
 			/>
 
 		<div className='note__footer'>
-				<small>13/01/2022</small>
+				<small>{date}</small>
 					<AiFillDelete
 						size='1.3em'
 					/>
