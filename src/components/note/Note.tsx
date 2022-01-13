@@ -11,7 +11,7 @@ const Note = () => {
 
 	return (
 		<div className='note'>
-			<textarea
+			<textarea className='note__text'
 				value={notes}
 				onChange={(e) => handleChange(e)}
 			/>

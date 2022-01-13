@@ -1,10 +1,10 @@
 import React from 'react';
-import Note from './components/note/Note';
+import NotesList from './components/notes-list/NotesList';
 
 const App = () => {
   return (
-    <div>
-      <Note/>
+    <div className='notes-list'>
+      <NotesList/>
     </div>
   );
 };
