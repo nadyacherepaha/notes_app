@@ -14,3 +14,8 @@ body {
 	padding-left: 15px;
 	min-height: 100vh;
 }
+
+textarea:focus-visible {
+	outline-offset: 0;
+	outline: 0;
+}
