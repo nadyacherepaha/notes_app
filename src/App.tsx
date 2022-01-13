@@ -1,28 +1,12 @@
-import React, { useState } from 'react';
-import { AiFillDelete } from 'react-icons/ai';
+import React from 'react';
+import Note from './components/note/Note';
 
-const Note = () => {
-  const [notes, setNotes] = useState<string>("");
-
-	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | null>) => {
-		setNotes(e.target.value);
-	  };
-
-	return (
-		<div>
-			<textarea
-				value={notes}
-				onChange={(e) => handleChange(e)}
-			/>
-
-		<div>
-				<small>13/01/2022</small>
-					<AiFillDelete
-						size='1.3em'
-					/>
-				</div>
-		</div>
-	);
+const App = () => {
+  return (
+    <div>
+      <Note/>
+    </div>
+  );
 };
 
-export default Note;
+export default App;
