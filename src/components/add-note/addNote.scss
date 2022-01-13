@@ -1,0 +1,13 @@
+.note {
+  &__new {
+    display: block;
+    width: 60%;
+    min-height: 50px;
+    background-color: #FFCDE3;
+    padding: 7px 15px;
+  }
+  &__text {
+    min-height: 30px;
+    width: 100%;
+  }
+}
