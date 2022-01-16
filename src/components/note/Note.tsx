@@ -11,15 +11,26 @@ export interface IOnDeleteNoteHandler {
 interface INoteComponent extends INote, IOnDeleteNoteHandler {}
 
 const Note: FC<INoteComponent> = ({ id, text, date, onDeleteNoteHandler }) => {
+	const colors = ['#FAFFC7','#E0BBE4','#957DAD','#D291BC','#FFFAB0','#FEC8D8','#FFDFD3','#FF9AA2','#E2F0CB','#B5EAD7','#C7CEEA','#AEE5FA'];
+	const randomColor = colors[Math.floor(Math.random() * colors.length)];
+	const characterLimit = 250;
+
   const [notes, setNotes] = useState<string>(text);
+	const [color] = useState<string>(randomColor);
 
 	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | null>, id: number) => {
-		setNotes(e.target.value);
+		if (characterLimit - e.target.value.length >= 0) {
+			setNotes(e.target.value);
+		}
 	};
 
 	const matchedNotes = notes.match(getTags);
+
 	return (
-		<div className='note'>
+		<div 
+			className='note' 
+			style={{backgroundColor:`${color}`}}
+		>
 			<textarea className='note__text'
 				value={notes}
 				onChange={(e) => handleChange(e, id)}

@@ -11,7 +11,7 @@ const NotesList: FC<INotesList> = ({ notes, onDeleteNoteHandler }) => {
 
 	return (
 		<div className='notes-list'>
-				{notes.map((note) => (
+			{notes.map((note) => (
 				<Note
 					key={note.id}
 					{...note}
