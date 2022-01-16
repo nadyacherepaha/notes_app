@@ -36,7 +36,15 @@ const Note: FC<INoteComponent> = ({ id, text, date, onDeleteNoteHandler }) => {
 				onChange={(e) => handleChange(e, id)}
 			/>
 
-			{matchedNotes ? <div className='tags'>Tags: {matchedNotes.map((tags) => <button type='button' className='tags__btn'>{tags.toLocaleLowerCase()}</button>)}</div> : null}
+			{matchedNotes ? <div className='tags'> Tags: 
+					
+				{matchedNotes.map((tags, key) => 
+					<button key={key} type='button' className='tags__btn'>
+						{tags.toLocaleLowerCase()}
+					</button>
+				)}
+
+				</div> : null}
 
 			<div className='note__footer'>
 					<small>{date}</small>
