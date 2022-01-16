@@ -30,3 +30,21 @@
     box-shadow: 0px 3px 5px 3px rgba(224,224,224,1);
   }
 }
+
+.tags {
+  padding: 5px 0;
+  font-size: 0.9em;
+
+  &__btn {
+    cursor: pointer;
+    background-color: transparent;
+    margin: 0 5px;
+    padding: 2px 10px;
+    border: 2px inset brown;
+    border-radius: 15px;
+    transform: scale3d(1, 1, 1);
+    &:hover {
+      transform: scale3d(1.1, 1.1, 1.1);
+    }
+  }
+}

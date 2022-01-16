@@ -2,6 +2,7 @@ import React, { FC, useState } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import "./note.scss";
 import { INote } from '../../types/note';
+import { getTags } from '../../utils';
 
 export interface IOnDeleteNoteHandler {
 	onDeleteNoteHandler: (id: number) => void;
@@ -16,6 +17,7 @@ const Note: FC<INoteComponent> = ({ id, text, date, onDeleteNoteHandler }) => {
 		setNotes(e.target.value);
 	};
 
+	const matchedNotes = notes.match(getTags);
 	return (
 		<div className='note'>
 			<textarea className='note__text'
@@ -23,13 +25,15 @@ const Note: FC<INoteComponent> = ({ id, text, date, onDeleteNoteHandler }) => {
 				onChange={(e) => handleChange(e, id)}
 			/>
 
-		<div className='note__footer'>
-				<small>{date}</small>
-					<AiFillDelete
-						onClick={() => onDeleteNoteHandler(id)}
-						size='1.3em'
-					/>
-				</div>
+			{matchedNotes ? <div className='tags'>Tags: {matchedNotes.map((tags) => <button type='button' className='tags__btn'>{tags.toLocaleLowerCase()}</button>)}</div> : null}
+
+			<div className='note__footer'>
+					<small>{date}</small>
+						<AiFillDelete
+							onClick={() => onDeleteNoteHandler(id)}
+							size='1.3em'
+						/>
+					</div>
 		</div>
 	);
 };
