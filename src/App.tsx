@@ -12,19 +12,31 @@ const App = () => {
 
   const handleAddNote = (text: string) => {
     const newNote = {
-			id: getRandomNumber(4, 100),
+			id: getRandomNumber(4, 150),
 			text: text,
 			date: currentDate,
 		};
 		const newNotes = [...notes, newNote];
 		setNotes(newNotes);
 	};
+
+  const handleDeleteNote = (id: number) => {
+		const newNotes = notes.filter((note) => note.id !== id);
+		setNotes(newNotes);
+	};
+   
   return (
     <div className='container'>
       <Header />
     </div>
         <Header onAddNoteHandler={handleAddNote}/>
-        <NotesList notes={notes} />
+        <NotesList
+          notes={notes}
+          onDeleteNoteHandler={handleDeleteNote}
+        />
+      </div>
+    </Provider>
+    
   );
 };
 
