@@ -3,4 +3,23 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 50px 0;
+
+	.mode-icon{
+		font-size: 24px;
+		transform: scale3d(1, 1, 1);
+
+		&:hover,
+		&:focus,
+		&:active {
+			transform: scale3d(1.1, 1.1, 1.1);
+		}
+	}
+}
+
+.dark-mode {
+	background-color: #202124;
+
+	h1 {
+		color: #fff;
+	}
 }

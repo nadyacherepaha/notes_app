@@ -38,9 +38,8 @@ const AddNote: FC<IAddNote> = ({ onAddNoteHandler }) => {
 				<small>
 					{characterLimit - noteText.length} Remaining
 				</small>
-					<IoAddCircleSharp
+				<IoAddCircleSharp
 					onClick={handleSaveClick}
-					className='delete-icon'
 					size='1.3em'
 				/>
 			</div>

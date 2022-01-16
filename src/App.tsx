@@ -9,6 +9,7 @@ const App = () => {
   const currentDate = new Date().toDateString();
 
   const [notes, setNotes] = useState<INote[]>(initialNotes || []);
+  const [darkMode, setDarkMode] = useState(false);
 
   const handleAddNote = (text: string) => {
     const newNote = {
@@ -26,10 +27,12 @@ const App = () => {
 	};
    
   return (
-    <div className='container'>
-      <Header />
-    </div>
-        <Header onAddNoteHandler={handleAddNote}/>
+    <div className={`${darkMode && 'dark-mode'}`}>
+      <div className='container'>
+        <Header
+          darkMode={darkMode}
+          onAddNoteHandler={handleAddNote}
+          onToggleDarkModeHandler={setDarkMode}
         <NotesList
           notes={notes}
           onDeleteNoteHandler={handleDeleteNote}
