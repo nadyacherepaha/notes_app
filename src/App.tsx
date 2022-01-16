@@ -1,29 +1,33 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import Header from './components/header/Header';
 import NotesList from './components/notes-list/NotesList';
-import initialNotes from "./data/notes.json";
 import { INote } from './types/note';
-import { getRandomNumber } from './utils';
+import { getRandomNumber, getTags } from './utils';
+import getNotes from './redux/selectors/notesSelectors';
+import { useAppDispatch, useAppSelector } from './hooks.ts/redux';
+import notesSlice from './redux/reducers/notesReducer';
 
-const App = () => {
+const App: FC = () => {
   const currentDate = new Date().toDateString();
-
-  const [notes, setNotes] = useState<INote[]>(initialNotes || []);
+  const notes = useAppSelector(getNotes);
+  const dispatch = useAppDispatch();
+  const { addNotes, deleteNotes } = notesSlice.actions;
+  
+  const [value] = useState<INote[]>([]);
   const [darkMode, setDarkMode] = useState(false);
 
   const handleAddNote = (text: string) => {
-    const newNote = {
-			id: getRandomNumber(4, 150),
-			text: text,
-			date: currentDate,
-		};
-		const newNotes = [...notes, newNote];
-		setNotes(newNotes);
+    if (value) {
+      dispatch(addNotes({
+        id: getRandomNumber(4, 150),
+		 	  text: text,
+		 	  date: currentDate,
+      }))
+    }
 	};
 
   const handleDeleteNote = (id: number) => {
-		const newNotes = notes.filter((note) => note.id !== id);
-		setNotes(newNotes);
+		dispatch(deleteNotes(id))
 	};
    
   return (
@@ -33,13 +37,13 @@ const App = () => {
           darkMode={darkMode}
           onAddNoteHandler={handleAddNote}
           onToggleDarkModeHandler={setDarkMode}
+        />
         <NotesList
           notes={notes}
-          onDeleteNoteHandler={handleDeleteNote}
+          onDeleteNoteHandler={(id) => handleDeleteNote(id)}
         />
       </div>
-    </Provider>
-    
+    </div>
   );
 };
 
