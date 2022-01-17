@@ -6,6 +6,7 @@ import { getRandomNumber } from './utils';
 import getNotes from './redux/selectors/notesSelectors';
 import { useAppDispatch, useAppSelector } from './hooks.ts/redux';
 import notesSlice from './redux/reducers/notesReducer';
+import SearchInput from './components/search/SearchInput';
 
 const App: FC = () => {
   const currentDate = new Date().toDateString();
@@ -15,6 +16,7 @@ const App: FC = () => {
   
   const [value] = useState<INote[]>([]);
   const [darkMode, setDarkMode] = useState(false);
+  const [searchText, setSearchText] = useState('');
 
   const handleAddNote = (text: string) => {
     if (value) {
@@ -38,8 +40,11 @@ const App: FC = () => {
           onAddNoteHandler={handleAddNote}
           onToggleDarkModeHandler={setDarkMode}
         />
+        <SearchInput onSearchNoteHandler={setSearchText} />
         <NotesList
-          notes={notes}
+          notes={notes.filter((note) =>
+						note.text.toLowerCase().includes(searchText)
+					)}
           onDeleteNoteHandler={(id) => handleDeleteNote(id)}
         />
       </div>

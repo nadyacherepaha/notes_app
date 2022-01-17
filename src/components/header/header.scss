@@ -19,6 +19,19 @@
 .dark-mode {
 	background-color: #202124;
 
+	.search {
+		border: 5px double rgb(175, 175, 175);
+
+		&-icon {
+			color: white;
+		}
+
+		input {
+			color: whitesmoke;
+			background-color: transparent;
+		}
+	}
+
 	h1 {
 		color: #fff;
 	}

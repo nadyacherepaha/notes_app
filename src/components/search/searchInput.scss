@@ -1,0 +1,33 @@
+.search {
+	display: flex;
+	align-items: center;
+	background-color: transparent;
+  border: 5px outset brown;
+	border-radius: 20px;
+	padding: 5px;
+	margin-bottom: 1.5em;
+
+  .search-icon {
+    padding-right: 10px;
+  }
+
+  input {
+    border: 0;
+    padding: 0;
+    width: 100%;
+    background-color: transparent;
+
+    &:focus,
+    &:hover,
+    &:active {
+      outline: none;
+      border: 0;
+    }
+  }
+
+  &__input {
+    border: 0;
+    background-color: transparent;
+    width: 100%;
+  }
+}
