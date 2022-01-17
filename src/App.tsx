@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import Header from './components/header/Header';
 import NotesList from './components/notes-list/NotesList';
 import { INote } from './types/note';
-import { getRandomNumber, getTags } from './utils';
+import { getRandomNumber } from './utils';
 import getNotes from './redux/selectors/notesSelectors';
 import { useAppDispatch, useAppSelector } from './hooks.ts/redux';
 import notesSlice from './redux/reducers/notesReducer';

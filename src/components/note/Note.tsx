@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import "./note.scss";
 import { INote } from '../../types/note';
-import { getTags } from '../../utils';
+import { getTags, uniqueValue } from '../../utils';
 
 export interface IOnDeleteNoteHandler {
 	onDeleteNoteHandler: (id: number) => void;
@@ -24,7 +24,8 @@ const Note: FC<INoteComponent> = ({ id, text, date, onDeleteNoteHandler }) => {
 		}
 	};
 
-	const matchedNotes = notes.match(getTags);
+	const matchedNotes = notes.toLowerCase().match(getTags);
+	const arrayOfUniqueTags = uniqueValue(matchedNotes);
 
 	return (
 		<div 
@@ -38,10 +39,11 @@ const Note: FC<INoteComponent> = ({ id, text, date, onDeleteNoteHandler }) => {
 
 			{matchedNotes ? <div className='tags'> Tags: 
 					
-				{matchedNotes.map((tags, key) => 
-					<button key={key} type='button' className='tags__btn'>
-						{tags.toLocaleLowerCase()}
-					</button>
+				{arrayOfUniqueTags.map((tags, key) => 
+					
+					<span key={key} className='tags__span'>
+						{tags}
+					</span>
 				)}
 
 				</div> : null}
